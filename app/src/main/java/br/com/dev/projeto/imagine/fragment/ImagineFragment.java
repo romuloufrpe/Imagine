@@ -94,6 +94,7 @@ public class ImagineFragment extends BaseFragment
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR1)
     private void taskCarros()
     {
         //this.imagines = ImagineService.getMecanicas(getContext());
@@ -103,7 +104,7 @@ public class ImagineFragment extends BaseFragment
 
              RequestQueue requestQueue = MySingleton.getInstance(getContext()).getRequestQueue();
 
-            ImaginesService mecanicaService = new ImagineService();
+            ImagineService mecanicaService = new ImagineService();
 
             getImagines(getContext(), tipo);
 
@@ -120,7 +121,7 @@ public class ImagineFragment extends BaseFragment
         return new ImagineAdapter.ImagineOnClickListener()
         {
             @Override
-            public void onClickMecanica(View view, int idx)
+            public void onClickImagine(View view, int idx)
             {
                 Bundle args = new Bundle();
 
@@ -158,7 +159,7 @@ public class ImagineFragment extends BaseFragment
     String tipo;
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR1)
-    public void getMecanicas(Context context, String tipo) throws IOException
+    public void getImagines(Context context, String tipo) throws IOException
     {
 
     final List<Imagine> listaImagines = new ArrayList<>();

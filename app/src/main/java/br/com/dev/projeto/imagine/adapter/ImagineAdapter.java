@@ -20,14 +20,14 @@ import br.com.dev.projeto.imagine.domain.Imagine;
 /**
  * Created by cedrim on 12/09/16.
  *Adapter Imagine*/
-public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.MecanicasViewHolder>
+public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.ImagineViewHolder>
 {
     private final List<Imagine> imagines;
     private final Context context;
-    private MecanicaOnClickListener imagineOnClickListener;
+    private ImagineOnClickListener imagineOnClickListener;
 
     /*Necessario para receber as informações*/
-    public ImagineAdapter(Context context, List<Imagine> imagines, MecanicaOnClickListener imagineOnClickListener)
+    public ImagineAdapter(Context context, List<Imagine> imagines, ImagineOnClickListener imagineOnClickListener)
     {
         this.context = context;
         this.imagines = imagines;
@@ -40,16 +40,16 @@ public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.Mecanica
     }
     /*Criando holders para serem manipuladas*/
     @Override
-    public MecanicasViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public ImagineViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.fragment_container, parent, false);
-        MecanicasViewHolder holder = new MecanicasViewHolder(view);
+        ImagineViewHolder holder = new ImagineViewHolder(view);
 
         return holder;
     }
     /*Setando holder e usando Picasso para recuperação da imagem*/
     @Override
-    public void onBindViewHolder(final MecanicasViewHolder holder, final int position)
+    public void onBindViewHolder(final ImagineViewHolder holder, final int position)
     {
         Imagine imagine = imagines.get(position);
 
@@ -81,26 +81,26 @@ public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.Mecanica
                 @Override
                 public void onClick(View view)
                 {
-                    imagineOnClickListener.onClickMecanica(holder.itemView, position);
+                    imagineOnClickListener.onClickImagine(holder.itemView, position);
                 }
             });
         }
     }
     /*criando uma interface para o onClick*/
-    public interface MecanicaOnClickListener
+    public interface ImagineOnClickListener
     {
-        void onClickMecanica(View view, int idx);
+        void onClickImagine(View view, int idx);
     }
 
     /*Necessario por causa do recycle view, capturando holder e setando os layouts*/
-    public static class MecanicasViewHolder extends RecyclerView.ViewHolder
+    public static class ImagineViewHolder extends RecyclerView.ViewHolder
     {
         public TextView tNome;
         ImageView img;
         ProgressBar progressBar;
         CardView cardView;
 
-        public MecanicasViewHolder(View view)
+        public ImagineViewHolder(View view)
         {
             super(view);
 

@@ -5,7 +5,8 @@ import java.io.Serializable;
 /**
  * Created by cedrim on 12/09/16.
  */
-public class Imagine implements Serializable {
+public class Imagine implements Serializable
+{
     private static final long serialVersionUID = 6601006766832473959L;
 
     long id;

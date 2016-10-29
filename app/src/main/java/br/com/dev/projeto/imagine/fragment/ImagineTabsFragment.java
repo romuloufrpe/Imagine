@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import br.com.dev.projeto.fiqueseguro.R;
-import br.com.dev.projeto.fiqueseguro.adapter.TabsAdapter;
+import br.com.dev.projeto.imagine.R;
+import br.com.dev.projeto.imagine.adapter.TabsAdapter;
 
 /**
  * Created by cedrim on 29/09/16.
@@ -22,7 +22,7 @@ public class ImagineTabsFragment extends  BaseFragment implements TabLayout.OnTa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_mecanica, container, false);
+        View view = inflater.inflate(R.layout.fragment_imagine, container, false);
 
         mViewPager = (ViewPager) view.findViewById(R.id.view_page);
         mViewPager.setOffscreenPageLimit(2);

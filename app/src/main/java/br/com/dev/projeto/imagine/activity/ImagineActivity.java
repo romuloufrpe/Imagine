@@ -9,15 +9,16 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import br.com.dev.projeto.fiqueseguro.R;
-import br.com.dev.projeto.fiqueseguro.domain.Mecanica;
+import br.com.dev.projeto.imagine.R;
+import br.com.dev.projeto.imagine.domain.Imagine;
+
 
 public class ImagineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mecanica);
+        setContentView(R.layout.activity_imagine);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -27,14 +28,14 @@ public class ImagineActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Mecanica mecanica = new Mecanica();
+        Imagine imagine = new Imagine();
 
-        mecanica.setNome(intent.getStringExtra("nome"));
-        mecanica.setUrlFoto(intent.getStringExtra("image"));
+        imagine.setNome(intent.getStringExtra("nome"));
+        imagine.setUrlFoto(intent.getStringExtra("image"));
 
 
-        Picasso.with(this).load(mecanica.getUrlFoto()).into(imageView);
-        textView.setText(mecanica.getNome());
+        Picasso.with(this).load(imagine.getUrlFoto()).into(imageView);
+        textView.setText(imagine.getNome());
 
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(fab);

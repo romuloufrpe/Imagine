@@ -14,30 +14,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import br.com.dev.projeto.fiqueseguro.R;
-import br.com.dev.projeto.fiqueseguro.domain.Mecanica;
+import br.com.dev.projeto.imagine.R;
+import br.com.dev.projeto.imagine.domain.Imagine;
 
 /**
  * Created by cedrim on 12/09/16.
  *Adapter Imagine*/
 public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.MecanicasViewHolder>
 {
-    protected static final String TAG = "mecanica";
-    private final List<Mecanica> mecanicas;
+    private final List<Imagine> imagines;
     private final Context context;
-    private MecanicaOnClickListener mecanicaOnClickListener;
+    private MecanicaOnClickListener imagineOnClickListener;
 
     /*Necessario para receber as informações*/
-    public ImagineAdapter(Context context, List<Mecanica> mecanicas, MecanicaOnClickListener mecanicaOnClickListener)
+    public ImagineAdapter(Context context, List<Imagine> imagines, MecanicaOnClickListener imagineOnClickListener)
     {
         this.context = context;
-        this.mecanicas = mecanicas;
-        this.mecanicaOnClickListener = mecanicaOnClickListener;
+        this.imagines = imagines;
+        this.imagineOnClickListener = imagineOnClickListener;
     }
 
     public int getItemCount()
     {
-        return this.mecanicas != null ? this.mecanicas.size() : 0;
+        return this.imagines != null ? this.imagines.size() : 0;
     }
     /*Criando holders para serem manipuladas*/
     @Override
@@ -52,14 +51,14 @@ public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.Mecanica
     @Override
     public void onBindViewHolder(final MecanicasViewHolder holder, final int position)
     {
-        Mecanica mecanica = mecanicas.get(position);
+        Imagine imagine = imagines.get(position);
 
-        holder.tNome.setText(mecanica.getNome());
+        holder.tNome.setText(imagine.getNome());
 
         holder.progressBar.setVisibility(View.VISIBLE);
 
 
-        Picasso.with(context).load(mecanica.getUrlFoto()).fit().into(holder.img,
+        Picasso.with(context).load(imagine.getUrlFoto()).fit().into(holder.img,
                 new com.squareup.picasso.Callback()
                 {
                     @Override
@@ -75,14 +74,14 @@ public class ImagineAdapter extends RecyclerView.Adapter<ImagineAdapter.Mecanica
                     }
                 });
 
-        if (mecanicaOnClickListener != null)
+        if (imagineOnClickListener != null)
         {
             holder.itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    mecanicaOnClickListener.onClickMecanica(holder.itemView, position);
+                    imagineOnClickListener.onClickMecanica(holder.itemView, position);
                 }
             });
         }

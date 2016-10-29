@@ -29,12 +29,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.dev.projeto.fiqueseguro.R;
-import br.com.dev.projeto.fiqueseguro.activity.MecanicaActivity;
-import br.com.dev.projeto.fiqueseguro.activity.MySingleton;
-import br.com.dev.projeto.fiqueseguro.adapter.MecanicaAdapter;
-import br.com.dev.projeto.fiqueseguro.domain.Mecanica;
-import br.com.dev.projeto.fiqueseguro.domain.MecanicaService;
+import br.com.dev.projeto.imagine.R;
+import br.com.dev.projeto.imagine.activity.ImagineActivity;
+import br.com.dev.projeto.imagine.activity.MySingleton;
+import br.com.dev.projeto.imagine.adapter.ImagineAdapter;
+import br.com.dev.projeto.imagine.domain.Imagine;
+import br.com.dev.projeto.imagine.domain.ImagineService;
 
 
 /**
@@ -44,7 +44,7 @@ public class ImagineFragment extends BaseFragment
 {
     private static int tabNumber;
     protected RecyclerView recyclerView;
-    private List<Mecanica> mecanicas;
+    private List<Imagine> imagines;
     private LinearLayoutManager linearLayoutManager;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -69,7 +69,7 @@ public class ImagineFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_mecanica, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_imagine, container, false);
 
         if(getArguments() != null)
         {
@@ -96,16 +96,16 @@ public class ImagineFragment extends BaseFragment
 
     private void taskCarros()
     {
-        //this.mecanicas = ImagineService.getMecanicas(getContext());
+        //this.imagines = ImagineService.getMecanicas(getContext());
 
         try {
-            //Log.e(TAG, mecanicas.get(0).getNome() + "encontrados d d.");
+            //Log.e(TAG, imagines.get(0).getNome() + "encontrados d d.");
 
              RequestQueue requestQueue = MySingleton.getInstance(getContext()).getRequestQueue();
 
-            MecanicaService mecanicaService = new MecanicaService();
+            ImaginesService mecanicaService = new ImagineService();
 
-            getMecanicas(getContext(), tipo);
+            getImagines(getContext(), tipo);
 
             String TAG = "ola";
 
@@ -115,26 +115,26 @@ public class ImagineFragment extends BaseFragment
     }
 
 
-    private MecanicaAdapter.MecanicaOnClickListener onClickMecanica()
+    private ImagineAdapter.ImagineOnClickListener onClickImagine()
     {
-        return new MecanicaAdapter.MecanicaOnClickListener()
+        return new ImagineAdapter.ImagineOnClickListener()
         {
             @Override
             public void onClickMecanica(View view, int idx)
             {
                 Bundle args = new Bundle();
 
-                Mecanica mecanica = mecanicas.get(idx);
+                Imagine imagine = imagines.get(idx);
 
 
 
-                Intent intent = new Intent(getContext(), MecanicaActivity.class);
+                Intent intent = new Intent(getContext(), ImagineActivity.class);
 
-                intent.putExtra("nome", mecanica.getNome());
-                intent.putExtra("image", mecanica.getUrlFoto());
+                intent.putExtra("nome", imagine.getNome());
+                intent.putExtra("image", imagine.getUrlFoto());
 
                 startActivity(intent);
-                Toast.makeText(getContext(), "Imagine: " + mecanica.getNome(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Imagine: " + imagine.getNome(), Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -161,7 +161,7 @@ public class ImagineFragment extends BaseFragment
     public void getMecanicas(Context context, String tipo) throws IOException
     {
 
-    final List<Mecanica> listaMecanicas = new ArrayList<>();
+    final List<Imagine> listaImagines = new ArrayList<>();
 
 
 
@@ -190,19 +190,19 @@ public class ImagineFragment extends BaseFragment
                             {
                                 JSONObject jsonCarro = jsonArray.getJSONObject(i);
 
-                                Mecanica mecanica = new Mecanica();
+                                Imagine imagine = new Imagine();
 
-                                mecanica.setNome(jsonCarro.getString("nome"));
-                                mecanica.setUrlFoto(jsonCarro.getString("url_foto"));
+                                imagine.setNome(jsonCarro.getString("nome"));
+                                imagine.setUrlFoto(jsonCarro.getString("url_foto"));
 
-                                Log.e(TAG, mecanica.getNome() + "Grupo");
+                                Log.e(TAG, imagine.getNome() + "Grupo");
 
-                                listaMecanicas.add(mecanica);
-                                if (listaMecanicas != null)
+                                listaImagines.add(imagine);
+                                if (listaImagines != null)
                                 {
-                                    ImagineFragment.this.mecanicas = listaMecanicas;
+                                    ImagineFragment.this.imagines = listaImagines;
 
-                                    recyclerView.setAdapter(new MecanicaAdapter(getContext(), listaMecanicas, onClickMecanica()));
+                                    recyclerView.setAdapter(new ImagineAdapter(getContext(), listaImagines, onClickImagine()));
                                 }
                                 // Log.e(TAG, mecanica.getNome() + "encontrados");
 
@@ -233,7 +233,7 @@ public class ImagineFragment extends BaseFragment
 
         MySingleton.getInstance(context).addToRequestQueue(jsObjRequest);
 //
-//        Log.e(TAG, this.mecanicas.toString() + "encontradosasdasd");
+//        Log.e(TAG, this.imagines.toString() + "encontradosasdasd");
 
     }
 

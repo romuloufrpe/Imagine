@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import br.com.dev.projeto.fiqueseguro.fragment.MecanicaFragment;
+import br.com.dev.projeto.imagine.fragment.ImagineFragment;
 
 /**
  * Created by cedrim on 29/09/16.
@@ -62,7 +62,7 @@ public class TabsAdapter extends FragmentPagerAdapter
         {
             args.putString("tipo", "luxo");
         }
-        Fragment f = new MecanicaFragment();
+        Fragment f = new ImagineFragment();
         f.setArguments(args);
 
         return f;

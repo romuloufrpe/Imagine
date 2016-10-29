@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import br.com.dev.projeto.fiqueseguro.R;
-import br.com.dev.projeto.fiqueseguro.fragment.MecanicaFragment;
+import br.com.dev.projeto.imagine.R;
+import br.com.dev.projeto.imagine.fragment.ImagineFragment;
 
 /**
  * Created by cedrim on 12/09/16.
@@ -38,7 +38,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter
             args.putString("tipo", "luxo");
         }
         //return ImagineFragment.newInstance(position + 1);
-        Fragment f = new MecanicaFragment();
+        Fragment f = new ImagineFragment();
         f.setArguments(args);
         return f;
     }

@@ -42,11 +42,16 @@ import br.com.dev.projeto.imagine.domain.ImagineService;
  */
 public class ImagineFragment extends BaseFragment
 {
+    private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final boolean LOG_ON = false;
+    private static final String TAG = "CarroService";
+    private static final String URL = "http://www.livroandroid.com.br/livro/carros/carros_{tipo}.json";
     private static int tabNumber;
     protected RecyclerView recyclerView;
+    String tipo;
     private List<Imagine> imagines;
     private LinearLayoutManager linearLayoutManager;
-    private static final String ARG_SECTION_NUMBER = "section_number";
+
 
     public ImagineFragment()
     {
@@ -64,6 +69,18 @@ public class ImagineFragment extends BaseFragment
         fragment.setArguments(args);
         return fragment;
     }
+
+/*
+    private class MecanicaTask
+    {
+
+        //ImagineService mecanicaService = new ImagineService();
+
+
+
+    }
+
+*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,14 +102,13 @@ public class ImagineFragment extends BaseFragment
          return rootView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR1)
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         taskCarros();
 
     }
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR1)
     private void taskCarros()
@@ -115,7 +131,6 @@ public class ImagineFragment extends BaseFragment
         }
     }
 
-
     private ImagineAdapter.ImagineOnClickListener onClickImagine()
     {
         return new ImagineAdapter.ImagineOnClickListener()
@@ -127,8 +142,6 @@ public class ImagineFragment extends BaseFragment
 
                 Imagine imagine = imagines.get(idx);
 
-
-
                 Intent intent = new Intent(getContext(), ImagineActivity.class);
 
                 intent.putExtra("nome", imagine.getNome());
@@ -139,24 +152,6 @@ public class ImagineFragment extends BaseFragment
             }
         };
     }
-
-/*
-    private class MecanicaTask
-    {
-
-        //ImagineService mecanicaService = new ImagineService();
-
-
-
-    }
-
-*/
-
-
-    private static final boolean LOG_ON = false;
-    private static final String TAG = "CarroService";
-    private static final String URL = "http://www.livroandroid.com.br/livro/carros/carros_{tipo}.json";
-    String tipo;
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR1)
     public void getImagines(Context context, String tipo) throws IOException
